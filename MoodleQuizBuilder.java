@@ -5,8 +5,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTabbedPane;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.ButtonGroup;
@@ -15,8 +13,6 @@ import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JLabel;
 import javax.swing.JButton;
-import javax.swing.JSpinner;
-import java.awt.SystemColor;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -94,6 +90,7 @@ public class MoodleQuizBuilder extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				textArea.setText("");
+				textField.setText("");
 				
 			}
 		});
@@ -113,12 +110,6 @@ public class MoodleQuizBuilder extends JFrame {
 		
 		bgroup.add(rdbtnFalse);
 		bgroup.add(rdbtnTrue);
-		
-
-
-
-
-		
 	
 		JButton btnSave = new JButton("Save");
 		btnSave.addActionListener(new ActionListener() {
@@ -190,6 +181,12 @@ public class MoodleQuizBuilder extends JFrame {
 		btnClearText_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				textArea_1.setText("");
+				textField_1.setText("");
+				textField_2.setText("");
+				textField_3.setText("");
+				textField_4.setText("");
+				textField_5.setText("");
+
 			}
 		});
 		panel.add(btnClearText_1, "cell 1 2,alignx right");
@@ -351,7 +348,7 @@ public class MoodleQuizBuilder extends JFrame {
 				if(textField_7.getText() != "" && textField_8.getText() != "" && textField_9.getText() != "" 
 						&& textField_10.getText() != "" && textField_11.getText() != "" && textField_12.getText() != ""){
 					builder.append(" { ="+textField_7.getText()+" -> "+textField_8.getText()+" ="+textField_9.getText()+" -> "
-							+textField_10.getText()+" ="+textField_11.getText()+" -> "+textField_12.getText()+" }\n");
+							+textField_10.getText()+" ="+textField_11.getText()+" -> "+textField_12.getText()+" }");
 				}
 				
 				textField_6.setText("");
@@ -370,6 +367,8 @@ public class MoodleQuizBuilder extends JFrame {
 		JButton btnClear = new JButton("Clear Text");
 		btnClear.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				textArea_2.setText("");
+				textField_6.setText("");
 				textField_7.setText("");
 				textField_8.setText("");
 				textField_9.setText("");
