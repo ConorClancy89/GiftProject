@@ -103,6 +103,7 @@ public class MoodleQuizBuilder extends JFrame {
 		panel1.add(lblCorrect, "flowx,cell 1 3");
 
 		ButtonGroup bgroup = new ButtonGroup();
+		ButtonGroup bgroup2 = new ButtonGroup();
 		
 		final JRadioButton rdbtnTrue = new JRadioButton("True");
 		panel1.add(rdbtnTrue, "cell 1 3");
@@ -112,6 +113,11 @@ public class MoodleQuizBuilder extends JFrame {
 		
 		bgroup.add(rdbtnFalse);
 		bgroup.add(rdbtnTrue);
+		
+
+
+
+
 		
 	
 		JButton btnSave = new JButton("Save");
@@ -177,44 +183,145 @@ public class MoodleQuizBuilder extends JFrame {
 		JLabel lblQuestion_1 = new JLabel("Question");
 		panel.add(lblQuestion_1, "cell 0 1,alignx center");
 		
-		JTextArea textArea_1 = new JTextArea();
+		final JTextArea textArea_1 = new JTextArea();
 		panel.add(textArea_1, "cell 1 1,grow");
 		
 		JButton btnClearText_1 = new JButton("Clear Text");
+		btnClearText_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textArea_1.setText("");
+			}
+		});
 		panel.add(btnClearText_1, "cell 1 2,alignx right");
 		
 		textField_2 = new JTextField();
 		panel.add(textField_2, "cell 1 3,growx");
 		textField_2.setColumns(10);
 		
-		JSpinner spinner = new JSpinner();
-		panel.add(spinner, "cell 2 3,alignx center");
+		final JRadioButton radioButton_0 = new JRadioButton("");
+		panel.add(radioButton_0, "cell 2 3,alignx center");
 		
 		textField_3 = new JTextField();
 		panel.add(textField_3, "cell 1 4,growx");
 		textField_3.setColumns(10);
 		
-		JSpinner spinner_1 = new JSpinner();
-		panel.add(spinner_1, "cell 2 4,alignx center");
+		final JRadioButton radioButton_1 = new JRadioButton("");
+		panel.add(radioButton_1, "cell 2 4,alignx center");
 		
 		textField_4 = new JTextField();
 		panel.add(textField_4, "cell 1 5,growx");
 		textField_4.setColumns(10);
 		
-		JSpinner spinner_2 = new JSpinner();
-		panel.add(spinner_2, "cell 2 5,alignx center");
+		final JRadioButton radioButton_2 = new JRadioButton("");
+		panel.add(radioButton_2, "cell 2 5,alignx center");
 		
 		textField_5 = new JTextField();
 		panel.add(textField_5, "cell 1 6,growx");
 		textField_5.setColumns(10);
 		
-		JSpinner spinner_3 = new JSpinner();
-		panel.add(spinner_3, "cell 2 6,alignx center");
+		final JRadioButton radioButton_3 = new JRadioButton("");
+		
+		bgroup2.add(radioButton_0);
+		bgroup2.add(radioButton_1);
+		bgroup2.add(radioButton_2);
+		bgroup2.add(radioButton_3);
 		
 		JButton btnSave_1 = new JButton("Save");
+		btnSave_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(textField_1.getText() != ""){
+					builder.append("::"+textField_1.getText()+":: ");
+				}
+				if(textArea_1.getText() != ""){
+					builder.append(textArea_1.getText()+"\n");
+				}
+				if(textField_2.getText() != "" && textField_3.getText() != "" && textField_4.getText() != "" && textField_5.getText() != ""){
+					if(radioButton_0.isSelected()){
+						builder.append("{ ="+textField_2.getText()+" # right; good! ~"+textField_3.getText()
+								+" # wrong, its "+textField_2.getText()+" ~"+textField_4.getText()
+								+" # wrong, its "+textField_2.getText()+" ~"+textField_5.getText()
+								+" # wrong, its "+textField_2.getText()+" }");
+					}
+					else if(radioButton_1.isSelected()){
+						builder.append("{ ="+textField_3.getText()+" # right; good! ~"+textField_4.getText()
+								+" # wrong, its "+textField_3.getText()+" ~"+textField_5.getText()
+								+" # wrong, its "+textField_3.getText()+" ~"+textField_2.getText()
+								+" # wrong, its "+textField_3.getText()+" }");
+					}
+					else if(radioButton_2.isSelected()){
+						builder.append("{ ="+textField_4.getText()+" # right; good! ~"+textField_3.getText()
+								+" # wrong, its "+textField_4.getText()+" ~"+textField_2.getText()
+								+" # wrong, its "+textField_4.getText()+" ~"+textField_5.getText()
+								+" # wrong, its "+textField_4.getText()+" }");
+					}
+					else if(radioButton_3.isSelected()){
+						builder.append("{ ="+textField_5.getText()+" # right; good! ~"+textField_3.getText()
+								+" # wrong, its "+textField_5.getText()+" ~"+textField_4.getText()
+								+" # wrong, its "+textField_5.getText()+" ~"+textField_2.getText()
+								+" # wrong, its "+textField_5.getText()+" }");
+					}
+					textField_1.setText("");
+					textField_2.setText("");
+					textField_3.setText("");
+					textField_4.setText("");
+					textField_5.setText("");
+					textArea_1.setText("");
+					System.out.println(builder.toString());
+					builder.setLength(0);
+					
+				}
+			}
+		});
+		
+		
+		panel.add(radioButton_3, "cell 2 6,alignx center");
 		panel.add(btnSave_1, "cell 1 7");
 		
 		JButton btnNewButton_1 = new JButton("Add another Multiple Choice");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(textField_1.getText() != ""){
+					builder.append("::"+textField_1.getText()+":: ");
+				}
+				if(textArea_1.getText() != ""){
+					builder.append(textArea_1.getText()+"\n");
+				}
+				if(textField_2.getText() != "" && textField_3.getText() != "" && textField_4.getText() != "" && textField_5.getText() != ""){
+					if(radioButton_0.isSelected()){
+						builder.append("{ ="+textField_2.getText()+" # right; good! ~"+textField_3.getText()
+								+" # wrong, its "+textField_2.getText()+" ~"+textField_4.getText()
+								+" # wrong, its "+textField_2.getText()+" ~"+textField_5.getText()
+								+" # wrong, its "+textField_2.getText()+" }");
+					}
+					else if(radioButton_1.isSelected()){
+						builder.append("{ ="+textField_3.getText()+" # right; good! ~"+textField_4.getText()
+								+" # wrong, its "+textField_3.getText()+" ~"+textField_5.getText()
+								+" # wrong, its "+textField_3.getText()+" ~"+textField_2.getText()
+								+" # wrong, its "+textField_3.getText()+" }");
+					}
+					else if(radioButton_2.isSelected()){
+						builder.append("{ ="+textField_4.getText()+" # right; good! ~"+textField_3.getText()
+								+" # wrong, its "+textField_4.getText()+" ~"+textField_2.getText()
+								+" # wrong, its "+textField_4.getText()+" ~"+textField_5.getText()
+								+" # wrong, its "+textField_4.getText()+" }");
+					}
+					else if(radioButton_3.isSelected()){
+						builder.append("{ ="+textField_5.getText()+" # right; good! ~"+textField_3.getText()
+								+" # wrong, its "+textField_5.getText()+" ~"+textField_4.getText()
+								+" # wrong, its "+textField_5.getText()+" ~"+textField_2.getText()
+								+" # wrong, its "+textField_5.getText()+" }");
+					}
+					
+					builder.append("\n");
+					textField_1.setText("");
+					textField_2.setText("");
+					textField_3.setText("");
+					textField_4.setText("");
+					textField_5.setText("");
+					textArea_1.setText("");
+				}
+			}
+		});
 		panel.add(btnNewButton_1, "cell 1 8");
 		
 		JPanel panel_1 = new JPanel();
