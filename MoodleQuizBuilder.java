@@ -18,6 +18,8 @@ import javax.swing.JButton;
 import javax.swing.JSpinner;
 import java.awt.SystemColor;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 
 public class MoodleQuizBuilder extends JFrame {
@@ -36,6 +38,7 @@ public class MoodleQuizBuilder extends JFrame {
 	private JTextField textField_8;
 	private JTextField textField_10;
 	private JTextField textField_12;
+	public StringBuilder builder = new StringBuilder();
 
 	/**
 	 * Launch the application.
@@ -81,10 +84,19 @@ public class MoodleQuizBuilder extends JFrame {
 		JLabel lblQuestion = new JLabel("Question");
 		panel1.add(lblQuestion, "cell 0 1,alignx center");
 		
-		JTextArea textArea = new JTextArea();
+		final JTextArea textArea = new JTextArea();
 		panel1.add(textArea, "cell 1 1,grow");
 		
 		JButton btnClearText = new JButton("Clear Text");
+		btnClearText.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				textArea.setText("");
+				
+			}
+		});
 		panel1.add(btnClearText, "cell 1 2,alignx right");
 		
 		JLabel lblCorrect = new JLabel("Correct Answer");
@@ -92,10 +104,10 @@ public class MoodleQuizBuilder extends JFrame {
 
 		ButtonGroup bgroup = new ButtonGroup();
 		
-		JRadioButton rdbtnTrue = new JRadioButton("False");
+		final JRadioButton rdbtnTrue = new JRadioButton("True");
 		panel1.add(rdbtnTrue, "cell 1 3");
 		
-		JRadioButton rdbtnFalse = new JRadioButton("False");
+		final JRadioButton rdbtnFalse = new JRadioButton("False");
 		panel1.add(rdbtnFalse, "cell 1 3");
 		
 		bgroup.add(rdbtnFalse);
@@ -103,9 +115,34 @@ public class MoodleQuizBuilder extends JFrame {
 		
 	
 		JButton btnSave = new JButton("Save");
+		btnSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(textField.getText() != ""){
+					builder.append("::"+textField.getText()+":: ");
+				}
+				if(textArea.getText() != ""){
+					builder.append(textArea.getText()+" ");
+				}
+				if(rdbtnTrue.isSelected()){
+					builder.append("{T}");
+				}
+				else if(rdbtnFalse.isSelected()){
+					builder.append("{F}");
+				}
+				
+
+			}
+		});
 		panel1.add(btnSave, "cell 1 5");
 		
 		JButton btnNewButton = new JButton("Add another True/False");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				builder.append("\n");
+				textField.setText("");
+				textArea.setText("");
+			}
+		});
 		panel1.add(btnNewButton, "cell 1 6,alignx left");
 		contentPane.add(tabbedPane, BorderLayout.CENTER);
 		
