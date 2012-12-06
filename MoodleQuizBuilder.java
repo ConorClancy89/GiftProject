@@ -129,7 +129,10 @@ public class MoodleQuizBuilder extends JFrame {
 				else if(rdbtnFalse.isSelected()){
 					builder.append("{F}");
 				}
-				
+				textField.setText("");
+				textArea.setText("");
+				System.out.println(builder.toString());
+				builder.setLength(0);
 
 			}
 		});
@@ -138,9 +141,22 @@ public class MoodleQuizBuilder extends JFrame {
 		JButton btnNewButton = new JButton("Add another True/False");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(textField.getText() != ""){
+					builder.append("::"+textField.getText()+":: ");
+				}
+				if(textArea.getText() != ""){
+					builder.append(textArea.getText()+" ");
+				}
+				if(rdbtnTrue.isSelected()){
+					builder.append("{T}");
+				}
+				else if(rdbtnFalse.isSelected()){
+					builder.append("{F}");
+				}
 				builder.append("\n");
 				textField.setText("");
 				textArea.setText("");
+				
 			}
 		});
 		panel1.add(btnNewButton, "cell 1 6,alignx left");
