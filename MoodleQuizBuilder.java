@@ -327,7 +327,7 @@ public class MoodleQuizBuilder extends JFrame {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(220, 220, 220));
 		tabbedPane.addTab("Matching", null, panel_1, null);
-		panel_1.setLayout(new MigLayout("", "[grow 10][grow 30][grow 50][grow 10]", "[fill][][][][][][][][][][][]"));
+		panel_1.setLayout(new MigLayout("", "[grow 10][grow 40][grow 50][grow 20]", "[fill][grow][][][][][][][][][][]"));
 		
 		JLabel lblTitleoptional_2 = new JLabel("Title (optional)");
 		panel_1.add(lblTitleoptional_2, "cell 0 0,alignx center");
@@ -336,55 +336,125 @@ public class MoodleQuizBuilder extends JFrame {
 		panel_1.add(textField_6, "cell 1 0 2 1,growx");
 		textField_6.setColumns(10);
 		
+		final JTextArea textArea_2 = new JTextArea();
+		panel_1.add(textArea_2, "cell 1 1 2 4,grow");
+		
+		JButton btnSave_2 = new JButton("Save");
+		btnSave_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(textField_6.getText() != ""){
+					builder.append("::"+textField_6.getText()+":: ");
+				}
+				if(textArea_2.getText() != ""){
+					builder.append(textArea_2.getText()+"\n");
+				}
+				if(textField_7.getText() != "" && textField_8.getText() != "" && textField_9.getText() != "" 
+						&& textField_10.getText() != "" && textField_11.getText() != "" && textField_12.getText() != ""){
+					builder.append(" { ="+textField_7.getText()+" -> "+textField_8.getText()+" ="+textField_9.getText()+" -> "
+							+textField_10.getText()+" ="+textField_11.getText()+" -> "+textField_12.getText()+" }");
+				}
+				
+				textField_6.setText("");
+				textField_7.setText("");
+				textField_8.setText("");
+				textField_9.setText("");
+				textField_10.setText("");
+				textField_11.setText("");
+				textField_12.setText("");
+				textArea_2.setText("");
+				System.out.println(builder.toString());
+				builder.setLength(0);
+			}
+		});
+		
+		JButton btnClear = new JButton("Clear Text");
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textField_7.setText("");
+				textField_8.setText("");
+				textField_9.setText("");
+				textField_10.setText("");
+				textField_11.setText("");
+				textField_12.setText("");
+
+			}
+		});
+		
+		
+		
+		JLabel lblQuestion_2 = new JLabel("Question");
+		panel_1.add(lblQuestion_2, "cell 0 2,alignx center");
+		
 		JLabel lblA = new JLabel("A");
-		panel_1.add(lblA, "flowx,cell 1 2,alignx trailing");
+		panel_1.add(lblA, "flowx,cell 1 6,alignx trailing");
 		
 		textField_7 = new JTextField();
-		panel_1.add(textField_7, "cell 1 2,growx");
+		panel_1.add(textField_7, "cell 1 6,growx");
 		textField_7.setColumns(10);
 		
 		JLabel lblA_1 = new JLabel("A");
-		panel_1.add(lblA_1, "flowx,cell 2 2");
+		panel_1.add(lblA_1, "flowx,cell 2 6");
 		
 		textField_8 = new JTextField();
-		panel_1.add(textField_8, "cell 2 2,growx");
+		panel_1.add(textField_8, "cell 2 6,growx");
 		textField_8.setColumns(10);
 		
 		JLabel lblB = new JLabel("B");
-		panel_1.add(lblB, "flowx,cell 1 4,alignx trailing");
+		panel_1.add(lblB, "flowx,cell 1 7,alignx trailing");
 		
 		textField_9 = new JTextField();
-		panel_1.add(textField_9, "cell 1 4,growx");
+		panel_1.add(textField_9, "cell 1 7,growx");
 		textField_9.setColumns(10);
 		
 		JLabel lblB_1 = new JLabel("B");
-		panel_1.add(lblB_1, "flowx,cell 2 4");
+		panel_1.add(lblB_1, "flowx,cell 2 7");
 		
 		textField_10 = new JTextField();
-		panel_1.add(textField_10, "cell 2 4,growx");
+		panel_1.add(textField_10, "cell 2 7,growx");
 		textField_10.setColumns(10);
 		
 		JLabel lblC = new JLabel("C");
-		panel_1.add(lblC, "flowx,cell 1 6,alignx trailing");
+		panel_1.add(lblC, "flowx,cell 1 8,alignx trailing");
 		
 		textField_11 = new JTextField();
-		panel_1.add(textField_11, "cell 1 6,growx");
+		panel_1.add(textField_11, "cell 1 8,growx");
 		textField_11.setColumns(10);
 		
 		JLabel lblC_1 = new JLabel("C");
-		panel_1.add(lblC_1, "flowx,cell 2 6");
+		panel_1.add(lblC_1, "flowx,cell 2 8");
 		
 		textField_12 = new JTextField();
-		panel_1.add(textField_12, "cell 2 6,growx");
+		panel_1.add(textField_12, "cell 2 8,growx");
 		textField_12.setColumns(10);
-		
-		JButton btnClear = new JButton("Clear Text");
-		panel_1.add(btnClear, "cell 2 8,alignx right");
-		
-		JButton btnSave_2 = new JButton("Save");
+		panel_1.add(btnClear, "cell 2 9,alignx right");
 		panel_1.add(btnSave_2, "cell 1 10");
 		
 		JButton btnAddAnotherMatching = new JButton("Add another Matching");
+		btnAddAnotherMatching.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(textField_6.getText() != ""){
+					builder.append("::"+textField_6.getText()+":: ");
+				}
+				if(textArea_2.getText() != ""){
+					builder.append(textArea_2.getText()+"\n");
+				}
+				if(textField_7.getText() != "" && textField_8.getText() != "" && textField_9.getText() != "" 
+						&& textField_10.getText() != "" && textField_11.getText() != "" && textField_12.getText() != ""){
+					builder.append(" { ="+textField_7.getText()+" -> "+textField_8.getText()+" ="+textField_9.getText()+" -> "
+							+textField_10.getText()+" ="+textField_11.getText()+" -> "+textField_12.getText()+" }");
+				}
+				
+				builder.append("\n");
+				textField_6.setText("");
+				textField_7.setText("");
+				textField_8.setText("");
+				textField_9.setText("");
+				textField_10.setText("");
+				textField_11.setText("");
+				textField_12.setText("");
+				textArea_2.setText("");
+			}
+		});
 		panel_1.add(btnAddAnotherMatching, "cell 1 11");
 		
 		JPanel panel_2 = new JPanel();
