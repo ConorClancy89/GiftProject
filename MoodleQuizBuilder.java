@@ -346,12 +346,12 @@ public class MoodleQuizBuilder extends JFrame {
 					builder.append("::"+textField_6.getText()+":: ");
 				}
 				if(textArea_2.getText() != ""){
-					builder.append(textArea_2.getText()+"\n");
+					builder.append(textArea_2.getText()+" ");
 				}
 				if(textField_7.getText() != "" && textField_8.getText() != "" && textField_9.getText() != "" 
 						&& textField_10.getText() != "" && textField_11.getText() != "" && textField_12.getText() != ""){
 					builder.append(" { ="+textField_7.getText()+" -> "+textField_8.getText()+" ="+textField_9.getText()+" -> "
-							+textField_10.getText()+" ="+textField_11.getText()+" -> "+textField_12.getText()+" }");
+							+textField_10.getText()+" ="+textField_11.getText()+" -> "+textField_12.getText()+" }\n");
 				}
 				
 				textField_6.setText("");
@@ -436,7 +436,7 @@ public class MoodleQuizBuilder extends JFrame {
 					builder.append("::"+textField_6.getText()+":: ");
 				}
 				if(textArea_2.getText() != ""){
-					builder.append(textArea_2.getText()+"\n");
+					builder.append(textArea_2.getText()+" ");
 				}
 				if(textField_7.getText() != "" && textField_8.getText() != "" && textField_9.getText() != "" 
 						&& textField_10.getText() != "" && textField_11.getText() != "" && textField_12.getText() != ""){
@@ -456,9 +456,6 @@ public class MoodleQuizBuilder extends JFrame {
 			}
 		});
 		panel_1.add(btnAddAnotherMatching, "cell 1 11");
-		
-		JPanel panel_2 = new JPanel();
-		tabbedPane.addTab("New tab", null, panel_2, null);
 	}
 
 }
