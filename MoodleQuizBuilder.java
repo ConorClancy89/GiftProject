@@ -8,6 +8,7 @@ import javax.swing.JTabbedPane;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.ButtonGroup;
+import javax.swing.JFileChooser;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
@@ -16,6 +17,11 @@ import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Formatter;
 
 
 public class MoodleQuizBuilder extends JFrame {
@@ -35,6 +41,8 @@ public class MoodleQuizBuilder extends JFrame {
 	private JTextField textField_10;
 	private JTextField textField_12;
 	public StringBuilder builder = new StringBuilder();
+	public File fileName;
+	private JTextField textField_13;
 
 	/**
 	 * Launch the application.
@@ -71,19 +79,45 @@ public class MoodleQuizBuilder extends JFrame {
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(220, 220, 220));
 		tabbedPane.addTab("File", null, panel_2, null);
-		panel_2.setLayout(new MigLayout("", "[grow 50][grow 50]", "[][]"));
+		panel_2.setLayout(new MigLayout("", "[grow 40][grow 60]", "[][][]"));
 		
-		JLabel lblCreatesANew = new JLabel("Creates a new file at a designated path");
+		JLabel lblCreatesANew = new JLabel("Creates a new file on the desktop");
 		panel_2.add(lblCreatesANew, "cell 0 0,alignx center");
 		
 		JLabel lblOpensAAelected = new JLabel("Opens a aelected existing file");
 		panel_2.add(lblOpensAAelected, "cell 1 0,alignx center");
 		
+		textField_13 = new JTextField();
+		panel_2.add(textField_13, "cell 0 1,growx");
+		textField_13.setColumns(10);
+		
 		JButton btnNewButton_2 = new JButton("Create new file");
-		panel_2.add(btnNewButton_2, "cell 0 1,alignx center");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {	
+				try {
+					fileName = new File("C:/Users/Conor/Desktop/"+textField_13.getText()+".txt");
+					textField_13.setText("");
+					fileName.createNewFile();
+				} catch (Exception e2) {
+					System.out.println("Problem creating");
+				}
+			}
+		});
+		panel_2.add(btnNewButton_2, "cell 0 2,alignx center");
 		
 		JButton btnAppendToA = new JButton("Append to a file");
-		panel_2.add(btnAppendToA, "cell 1 1,alignx center");
+		btnAppendToA.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFileChooser chooser = new JFileChooser();
+				if(chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){
+					//System.out.println(chooser.getSelectedFile());
+					fileName = chooser.getSelectedFile();
+					System.out.println(chooser.getSelectedFile());
+					
+				}
+			}
+		});
+		panel_2.add(btnAppendToA, "cell 1 2,alignx center");
 		tabbedPane.addTab("True or False", panel1);
 		panel1.setLayout(new MigLayout("", "[grow 20][grow][grow 20]", "[][grow][][][][][]"));
 		
@@ -145,6 +179,16 @@ public class MoodleQuizBuilder extends JFrame {
 				}
 				textField.setText("");
 				textArea.setText("");
+				try {
+					FileWriter fw = new FileWriter(fileName);
+					BufferedWriter bw1 = new BufferedWriter(fw);
+					bw1.write(builder.toString()+"\n");
+					bw1.close();
+					System.out.println("worked");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					System.out.println("didnt work");
+					}
 				System.out.println(builder.toString());
 				builder.setLength(0);
 
