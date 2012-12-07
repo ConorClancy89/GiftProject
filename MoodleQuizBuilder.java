@@ -67,6 +67,23 @@ public class MoodleQuizBuilder extends JFrame {
 		
 
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(220, 220, 220));
+		tabbedPane.addTab("File", null, panel_2, null);
+		panel_2.setLayout(new MigLayout("", "[grow 50][grow 50]", "[][]"));
+		
+		JLabel lblCreatesANew = new JLabel("Creates a new file at a designated path");
+		panel_2.add(lblCreatesANew, "cell 0 0,alignx center");
+		
+		JLabel lblOpensAAelected = new JLabel("Opens a aelected existing file");
+		panel_2.add(lblOpensAAelected, "cell 1 0,alignx center");
+		
+		JButton btnNewButton_2 = new JButton("Create new file");
+		panel_2.add(btnNewButton_2, "cell 0 1,alignx center");
+		
+		JButton btnAppendToA = new JButton("Append to a file");
+		panel_2.add(btnAppendToA, "cell 1 1,alignx center");
 		tabbedPane.addTab("True or False", panel1);
 		panel1.setLayout(new MigLayout("", "[grow 20][grow][grow 20]", "[][grow][][][][][]"));
 		
