@@ -21,6 +21,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Formatter;
 
 
@@ -43,6 +44,7 @@ public class MoodleQuizBuilder extends JFrame {
 	public StringBuilder builder = new StringBuilder();
 	public File fileName;
 	private JTextField textField_13;
+	String nl = System.getProperty("line.separator");
 
 	/**
 	 * Launch the application.
@@ -180,10 +182,10 @@ public class MoodleQuizBuilder extends JFrame {
 				textField.setText("");
 				textArea.setText("");
 				try {
-					FileWriter fw = new FileWriter(fileName);
-					BufferedWriter bw1 = new BufferedWriter(fw);
-					bw1.write(builder.toString()+"\n");
-					bw1.close();
+					PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(fileName, true)));
+					out.println(builder.toString()+"\n");
+					//bw1.write(builder.toString()+"\n");
+					out.close();
 					System.out.println("worked");
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
@@ -211,7 +213,7 @@ public class MoodleQuizBuilder extends JFrame {
 				else if(rdbtnFalse.isSelected()){
 					builder.append("{F}");
 				}
-				builder.append("\n");
+				builder.append(nl);
 				textField.setText("");
 				textArea.setText("");
 				
