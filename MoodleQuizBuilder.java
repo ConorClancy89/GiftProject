@@ -113,7 +113,7 @@ public class MoodleQuizBuilder extends JFrame {
 				JFileChooser chooser = new JFileChooser();
 				if(chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){
 					//System.out.println(chooser.getSelectedFile());
-					fileName = chooser.getSelectedFile();
+					fileName = new File(chooser.getSelectedFile().toString());
 					System.out.println(chooser.getSelectedFile());
 					
 				}
@@ -326,6 +326,16 @@ public class MoodleQuizBuilder extends JFrame {
 					textField_4.setText("");
 					textField_5.setText("");
 					textArea_1.setText("");
+					try {
+						PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(fileName, true)));
+						out.println(builder.toString()+"\n");
+						//bw1.write(builder.toString()+"\n");
+						out.close();
+						System.out.println("worked");
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						System.out.println("didnt work");
+						}
 					System.out.println(builder.toString());
 					builder.setLength(0);
 					
@@ -372,7 +382,7 @@ public class MoodleQuizBuilder extends JFrame {
 								+" # wrong, its "+textField_5.getText()+" }");
 					}
 					
-					builder.append("\n");
+					builder.append(nl);
 					textField_1.setText("");
 					textField_2.setText("");
 					textField_3.setText("");
@@ -422,6 +432,16 @@ public class MoodleQuizBuilder extends JFrame {
 				textField_11.setText("");
 				textField_12.setText("");
 				textArea_2.setText("");
+				try {
+					PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(fileName, true)));
+					out.println(builder.toString()+"\n");
+					//bw1.write(builder.toString()+"\n");
+					out.close();
+					System.out.println("worked");
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					System.out.println("didnt work");
+					}
 				System.out.println(builder.toString());
 				builder.setLength(0);
 			}
@@ -506,7 +526,7 @@ public class MoodleQuizBuilder extends JFrame {
 							+textField_10.getText()+" ="+textField_11.getText()+" -> "+textField_12.getText()+" }");
 				}
 				
-				builder.append("\n");
+				builder.append(nl);
 				textField_6.setText("");
 				textField_7.setText("");
 				textField_8.setText("");
